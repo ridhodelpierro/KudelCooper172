@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">KudelCooper17</string>
     <string name="welcome">WELCOME</string>
+    <string name="activity_hitung">Activity Hitung</string>
+    <string name="panjang">Panjang</string>
+    <string name="textview">TextView</string>
+    <string name="lebar">Lebar</string>
+    <string name="tinggi">Tinggi</string>
 </resources>
