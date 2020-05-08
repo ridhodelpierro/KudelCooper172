@@ -17,13 +17,19 @@ class MainActivity : AppCompatActivity() {
 
         val textView1 = findViewById<TextView>(R.id.textView1)
         val button1 = findViewById<Button>(R.id.button1)
+        val button2 = findViewById<Button>(R.id.button2)
 
-        textView1.setOnClickListener{
+        textView1.setOnClickListener {
             Toast.makeText(this,"hai :)",Toast.LENGTH_SHORT).show()
         }
 
         button1.setOnClickListener {
             val intent = Intent(this@MainActivity,HitungActivity::class.java)
+            startActivity(intent)
+        }
+
+        button2.setOnClickListener {
+            val intent = Intent(this@MainActivity,GameActivity::class.java)
             startActivity(intent)
         }
     }
