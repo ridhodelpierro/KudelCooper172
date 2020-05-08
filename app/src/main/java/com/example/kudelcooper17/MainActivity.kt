@@ -32,5 +32,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity,GameActivity::class.java)
             startActivity(intent)
         }
+        btSecondActivity.setOnClickListener {
+            val intent = Intent(this@MainActivity,SecondActivity::class.java)
+            intent.putExtra("Nama","R.Del Pierro.N")
+            intent.putExtra("Kelas","NON-Reguler")
+            startActivity(intent)
+        }
     }
 }

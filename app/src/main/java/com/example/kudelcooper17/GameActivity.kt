@@ -4,7 +4,9 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.postDelayed
 import kotlinx.android.synthetic.main.activity_game.*
+import java.util.logging.Handler
 import kotlin.random.Random
 
 private const val Batu = 1
@@ -13,7 +15,7 @@ private const val Kertas = 3
 
 
 class GameActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
@@ -21,25 +23,34 @@ class GameActivity : AppCompatActivity() {
         var pilihanplayer:Int
 
         buttonBatu.setOnClickListener {
-            pilihanplayer = Batu
+            textPlayer.text = "BATU"
+                pilihanplayer = Batu
             pilihankomputer = getpilihanKomputer()
-            textHasil.text = suwit(pilihanplayer,pilihankomputer)
-            textPlayer.text = "Batu"
-            showpilihankomputer(pilihankomputer)
+            textPlayer.text = ""
+            android.os.Handler().postDelayed({
+                textHasil.text = suwit(pilihanplayer,pilihankomputer)
+                showpilihankomputer(pilihankomputer)
+            },2000)
         }
         buttonGunting.setOnClickListener {
+            textPlayer.text = "GUNTING"
             pilihanplayer = Gunting
             pilihankomputer = getpilihanKomputer()
-            textHasil.text = suwit(pilihanplayer,pilihankomputer)
-            textPlayer.text = "Gunting"
-            showpilihankomputer(pilihankomputer)
+            textPlayer.text = ""
+            android.os.Handler().postDelayed({
+                textHasil.text = suwit(pilihanplayer,pilihankomputer)
+                showpilihankomputer(pilihankomputer)
+            },2000)
         }
         buttonKertas.setOnClickListener {
-            pilihanplayer = Kertas
+            textPlayer.text = "KERTAS"
+                pilihanplayer = Kertas
             pilihankomputer = getpilihanKomputer()
-            textHasil.text = suwit(pilihanplayer,pilihankomputer)
-            textPlayer.text = "Kertas"
-            showpilihankomputer(pilihankomputer)
+            textPlayer.text = ""
+            android.os.Handler().postDelayed({
+                textHasil.text = suwit(pilihanplayer,pilihankomputer)
+                showpilihankomputer(pilihankomputer)
+            },2000)
         }
 
     }
@@ -51,17 +62,17 @@ class GameActivity : AppCompatActivity() {
     fun suwit(pilihanplayer:Int,pilihankomputer:Int):String{
         var hasil: String= ""
         if(pilihanplayer == pilihankomputer){
-            hasil = "SERI"
-            textHasil.setTextColor(Color.GRAY)
+            hasil = "KALIAN IMBANG"
+            textHasil.setTextColor(Color.YELLOW)
         }
         else if((pilihanplayer == Batu && pilihankomputer == Kertas) ||
                 (pilihanplayer == Gunting && pilihankomputer == Batu) ||
                 (pilihanplayer == Kertas && pilihankomputer == Gunting)){
-            hasil = "YOU LOSE"
+            hasil = "KAMU KALAH"
             textHasil.setTextColor(Color.RED)
         }
         else{
-            hasil = "YOU WIN"
+            hasil = "KAMU MENANG"
             textHasil.setTextColor(Color.GREEN)
         }
 
@@ -76,4 +87,8 @@ class GameActivity : AppCompatActivity() {
             3 -> textKomputer.text = "Komputer memilih: Kertas"
         }
     }
+}
+
+private fun Handler.postDelayed(function: () -> Unit) {
+
 }
