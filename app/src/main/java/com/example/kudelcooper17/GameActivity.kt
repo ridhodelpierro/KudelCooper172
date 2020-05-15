@@ -15,9 +15,17 @@ private const val Kertas = 3
 
 
 class GameActivity : AppCompatActivity() {
+
+    companion object{
+        const val EXTRA_USER = "username"
+    }
+
+    var username:String = ""
     override fun onCreate(savedInstanceState: Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        username = intent.getStringExtra("EXTRA_USER")
 
         var pilihankomputer:Int
         var pilihanplayer:Int
@@ -30,7 +38,7 @@ class GameActivity : AppCompatActivity() {
             android.os.Handler().postDelayed({
                 textHasil.text = suwit(pilihanplayer,pilihankomputer)
                 showpilihankomputer(pilihankomputer)
-            },2000)
+            },1500)
         }
         buttonGunting.setOnClickListener {
             textPlayer.text = "GUNTING"
@@ -40,7 +48,7 @@ class GameActivity : AppCompatActivity() {
             android.os.Handler().postDelayed({
                 textHasil.text = suwit(pilihanplayer,pilihankomputer)
                 showpilihankomputer(pilihankomputer)
-            },2000)
+            },1500)
         }
         buttonKertas.setOnClickListener {
             textPlayer.text = "KERTAS"
@@ -50,7 +58,7 @@ class GameActivity : AppCompatActivity() {
             android.os.Handler().postDelayed({
                 textHasil.text = suwit(pilihanplayer,pilihankomputer)
                 showpilihankomputer(pilihankomputer)
-            },2000)
+            },1500)
         }
 
     }
@@ -68,11 +76,11 @@ class GameActivity : AppCompatActivity() {
         else if((pilihanplayer == Batu && pilihankomputer == Kertas) ||
                 (pilihanplayer == Gunting && pilihankomputer == Batu) ||
                 (pilihanplayer == Kertas && pilihankomputer == Gunting)){
-            hasil = "KAMU KALAH"
+            hasil = username + " KALAH"
             textHasil.setTextColor(Color.RED)
         }
         else{
-            hasil = "KAMU MENANG"
+            hasil = username + " MENANG"
             textHasil.setTextColor(Color.GREEN)
         }
 
